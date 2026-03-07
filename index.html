@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VisionDesk Live | Object + Emotion Recognition</title>
+    <link rel="stylesheet" href="styles.css?v=4" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="hero">
+        <p class="eyebrow">VisionDesk Live</p>
+        <h1>Rozpoznawanie obiektow i emocji z kamery MacBooka</h1>
+        <p class="subtitle">
+          Kamera w czasie rzeczywistym wykrywa osoby i przedmioty (np. kubek,
+          pies, laptop), a dla twarzy pokazuje najbardziej prawdopodobna emocje.
+        </p>
+      </header>
+
+      <section class="controls">
+        <button id="startButton" class="button">Start camera</button>
+        <button id="stopButton" class="button ghost" disabled>Stop</button>
+
+        <label class="threshold" for="thresholdRange">
+          Confidence:
+          <span id="thresholdValue">0.25</span>
+        </label>
+        <input
+          id="thresholdRange"
+          type="range"
+          min="0.15"
+          max="0.95"
+          step="0.05"
+          value="0.25"
+        />
+      </section>
+
+      <div id="statusBadge" class="badge" data-level="info">Loading models...</div>
+
+      <section class="workspace">
+        <section class="stage">
+          <video id="video" autoplay playsinline muted></video>
+          <canvas id="overlay"></canvas>
+          <div id="emptyState" class="empty-state">
+            Kliknij <strong>Start camera</strong>, aby rozpoczac detekcje.
+          </div>
+        </section>
+
+        <aside class="sidebar">
+          <section class="panel detected">
+            <h2>Live detections</h2>
+            <ul id="objectList">
+              <li>No detections yet.</li>
+            </ul>
+            <h2>Face emotions</h2>
+            <ul id="emotionList">
+              <li>No face emotions yet.</li>
+            </ul>
+          </section>
+
+          <section class="panel model-stack">
+            <h2>Models in use</h2>
+            <p class="model-hint">Najedz kursorem na model, aby zobaczyc opis.</p>
+            <ul class="model-list">
+              <li
+                class="model-item"
+                tabindex="0"
+                data-tooltip="COCO-SSD (lite_mobilenet_v2) wykrywa obiekty z datasetu COCO i zwraca bounding box + confidence."
+              >
+                <span class="model-name">COCO-SSD</span>
+                <span class="model-role">Object detection</span>
+                <span id="objectModelOutput" class="model-output" data-level="info"
+                  >Waiting...</span
+                >
+              </li>
+              <li
+                class="model-item"
+                tabindex="0"
+                data-tooltip="TinyFaceDetector szybko lokalizuje twarze na obrazie, z naciskiem na wydajnosc realtime."
+              >
+                <span class="model-name">TinyFaceDetector</span>
+                <span class="model-role">Face localization</span>
+                <span id="faceDetectorOutput" class="model-output" data-level="info"
+                  >Waiting...</span
+                >
+              </li>
+              <li
+                class="model-item"
+                tabindex="0"
+                data-tooltip="FaceExpressionNet klasyfikuje emocje twarzy (np. happy, sad, neutral, surprised)."
+              >
+                <span class="model-name">FaceExpressionNet</span>
+                <span class="model-role">Emotion classification</span>
+                <span id="expressionModelOutput" class="model-output" data-level="info"
+                  >Waiting...</span
+                >
+              </li>
+              <li
+                class="model-item"
+                tabindex="0"
+                data-tooltip="TensorFlow.js uruchamia modele lokalnie w przegladarce (WebGL/CPU), bez backendu."
+              >
+                <span class="model-name">TensorFlow.js</span>
+                <span class="model-role">In-browser runtime</span>
+                <span id="runtimeModelOutput" class="model-output" data-level="info"
+                  >Initializing...</span
+                >
+              </li>
+            </ul>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.15/dist/face-api.js"></script>
+    <script src="app.js?v=4" defer></script>
+  </body>
+</html>
