@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,10 +11,10 @@
       <p class="course-tag">2MA LMT AI · Class 12: Computer vision 1</p>
       <header class="hero">
         <p class="eyebrow">VisionDesk Live</p>
-        <h1>Rozpoznawanie obiektow i emocji z kamery MacBooka</h1>
+        <h1>Object and emotion recognition from the MacBook camera</h1>
         <p class="subtitle">
-          Kamera w czasie rzeczywistym wykrywa osoby i przedmioty (np. kubek,
-          pies, laptop), a dla twarzy pokazuje najbardziej prawdopodobna emocje.
+          The camera detects people and objects in real time (e.g. a mug, a
+          dog, a laptop), and for each face it shows the most likely emotion.
         </p>
       </header>
 
@@ -43,7 +43,7 @@
           <video id="video" autoplay playsinline muted></video>
           <canvas id="overlay"></canvas>
           <div id="emptyState" class="empty-state">
-            Kliknij <strong>Start camera</strong>, aby rozpoczac detekcje.
+            Click <strong>Start camera</strong> to begin detection.
           </div>
         </section>
 
@@ -61,12 +61,12 @@
 
           <section class="panel model-stack">
             <h2>Models in use</h2>
-            <p class="model-hint">Najedz kursorem na model, aby zobaczyc opis.</p>
+            <p class="model-hint">Hover over a model to see its description.</p>
             <ul class="model-list">
               <li
                 class="model-item"
                 tabindex="0"
-                data-tooltip="COCO-SSD (lite_mobilenet_v2) wykrywa obiekty z datasetu COCO i zwraca bounding box + confidence."
+                data-tooltip="COCO-SSD (lite_mobilenet_v2) detects objects from the COCO dataset and returns a bounding box plus a confidence score."
               >
                 <span class="model-name">COCO-SSD</span>
                 <span class="model-role">Object detection</span>
@@ -77,7 +77,7 @@
               <li
                 class="model-item"
                 tabindex="0"
-                data-tooltip="TinyFaceDetector szybko lokalizuje twarze na obrazie, z naciskiem na wydajnosc realtime."
+                data-tooltip="TinyFaceDetector quickly locates faces in the image, tuned for real-time performance."
               >
                 <span class="model-name">TinyFaceDetector</span>
                 <span class="model-role">Face localization</span>
@@ -88,7 +88,7 @@
               <li
                 class="model-item"
                 tabindex="0"
-                data-tooltip="FaceExpressionNet klasyfikuje emocje twarzy (np. happy, sad, neutral, surprised)."
+                data-tooltip="FaceExpressionNet classifies facial emotions (e.g. happy, sad, neutral, surprised)."
               >
                 <span class="model-name">FaceExpressionNet</span>
                 <span class="model-role">Emotion classification</span>
@@ -99,7 +99,7 @@
               <li
                 class="model-item"
                 tabindex="0"
-                data-tooltip="TensorFlow.js uruchamia modele lokalnie w przegladarce (WebGL/CPU), bez backendu."
+                data-tooltip="TensorFlow.js runs the models locally in the browser (WebGL/CPU), with no backend."
               >
                 <span class="model-name">TensorFlow.js</span>
                 <span class="model-role">In-browser runtime</span>
